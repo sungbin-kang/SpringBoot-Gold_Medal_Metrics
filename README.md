@@ -79,6 +79,7 @@ For example:
 
 `curl "localhost:3001/countries?sort_by=name&ascending=y"`
 <img src= "" width="500" />
+<img width="897" alt="List of Countries" src="https://user-images.githubusercontent.com/72234428/153035065-9f076f79-2ae5-47b6-9b41-1bd4e19c0b54.png">
 
 
 **Specific Country Details**
