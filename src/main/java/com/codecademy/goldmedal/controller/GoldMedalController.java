@@ -57,7 +57,7 @@ public class GoldMedalController {
     }
 
     private CountryDetailsResponse getCountryDetailsResponse(String countryName) {
-        var countryOptional = countryRepository.findOptionalByName(countryName); // TODO: get the country; this repository method should return a java.util.Optional
+        var countryOptional = countryRepository.findOptionalByName(countryName); 
         if (countryOptional.isEmpty()) {
             return new CountryDetailsResponse(countryName);
         }
