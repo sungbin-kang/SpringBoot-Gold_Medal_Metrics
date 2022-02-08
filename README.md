@@ -66,6 +66,9 @@ For Window, `mvnw spring-boot:run`
 
 ### With web application
 
+https://user-images.githubusercontent.com/72234428/153036257-301dfa0b-7741-4179-baad-fe463af9c96f.mov
+
+
 
 ### With curl to Render JSON
 
@@ -78,7 +81,7 @@ User must specify sort_by value with "year", "city", "season", "name", "country"
 For example: 
 
 `curl "localhost:3001/countries?sort_by=name&ascending=y"`
-<img src= "" width="500" />
+
 <img width="897" alt="List of Countries" src="https://user-images.githubusercontent.com/72234428/153035065-9f076f79-2ae5-47b6-9b41-1bd4e19c0b54.png">
 
 
@@ -91,7 +94,7 @@ For example:
 
 `curl "localhost:3001/countries/Australia"`
 
-<img src= "" width="500" />
+<img width="897" alt="Specific Country Details" src="https://user-images.githubusercontent.com/72234428/153035203-b562f134-5e9b-49f5-8e10-19824ecfec3b.png">
 
 
 **Specific Country Gold Medal List**
@@ -105,4 +108,5 @@ For example:
 
 `curl "localhost:3001/countries/Australia/medals?sort_by=year&ascending=n"`
 
-<img src= "" width="500" />
+<img width="956" alt="Specific Country Gold Medal List" src="https://user-images.githubusercontent.com/72234428/153035257-d9236396-aac2-4190-b50a-941e4af76a31.png">
+
