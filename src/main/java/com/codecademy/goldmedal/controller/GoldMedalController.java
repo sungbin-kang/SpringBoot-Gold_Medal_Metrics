@@ -13,11 +13,10 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping(value = "/countries")
 public class GoldMedalController {
-    // TODO: declare references to your repositories
+
     private final GoldMedalRepository goldMedalRepository;
     private final CountryRepository countryRepository;
 
-    // TODO: update your constructor to include your repositories
     public GoldMedalController(final GoldMedalRepository goldMedalRepository, final CountryRepository countryRepository) {
         this.goldMedalRepository = goldMedalRepository;
         this.countryRepository = countryRepository;
@@ -64,36 +63,36 @@ public class GoldMedalController {
         }
 
         var country = countryOptional.get();
-        var goldMedalCount = goldMedalRepository.countByCountry(countryName); // TODO: get the medal count
+        var goldMedalCount = goldMedalRepository.countByCountry(countryName);
 
-        var summerWins = goldMedalRepository.findByCountryAndSeason(countryName, "Summer", Sort.by("year").ascending()); // TODO: get the collection of wins at the Summer Olympics, sorted by year in ascending order
+        var summerWins = goldMedalRepository.findByCountryAndSeason(countryName, "Summer", Sort.by("year").ascending());
         var numberSummerWins = summerWins.size() > 0 ? summerWins.size() : null;
-        var totalSummerEvents = goldMedalRepository.countBySeason("Summer"); // TODO: get the total number of events at the Summer Olympics
+        var totalSummerEvents = goldMedalRepository.countBySeason("Summer");
         var percentageTotalSummerWins = totalSummerEvents != 0 && numberSummerWins != null ? (float) summerWins.size() / totalSummerEvents : null;
         var yearFirstSummerWin = summerWins.size() > 0 ? summerWins.get(0).getYear() : null;
 
-        var winterWins = goldMedalRepository.findByCountryAndSeason(countryName, "Winter", Sort.by("year").ascending()); // TODO: get the collection of wins at the Winter Olympics
+        var winterWins = goldMedalRepository.findByCountryAndSeason(countryName, "Winter", Sort.by("year").ascending());
         var numberWinterWins = winterWins.size() > 0 ? winterWins.size() : null;
-        var totalWinterEvents = goldMedalRepository.countBySeason("Winter"); // TODO: get the total number of events at the Winter Olympics, sorted by year in ascending order
+        var totalWinterEvents = goldMedalRepository.countBySeason("Winter");
         var percentageTotalWinterWins = totalWinterEvents != 0 && numberWinterWins != null ? (float) winterWins.size() / totalWinterEvents : null;
         var yearFirstWinterWin = winterWins.size() > 0 ? winterWins.get(0).getYear() : null;
 
-        var numberEventsWonByFemaleAthletes = goldMedalRepository.countByCountryAndGender(countryName, "Women"); // TODO: get the number of wins by female athletes
-        var numberEventsWonByMaleAthletes = goldMedalRepository.countByCountryAndGender(countryName, "Men"); // TODO: get the number of wins by male athletes
+        var numberEventsWonByFemaleAthletes = goldMedalRepository.countByCountryAndGender(countryName, "Women");
+        var numberEventsWonByMaleAthletes = goldMedalRepository.countByCountryAndGender(countryName, "Men");
 
         return new CountryDetailsResponse(
-                countryName,                // String
-                country.getGdp(),           // BigDecimal
-                country.getPopulation(),    // Integer
-                goldMedalCount,             // Integer
-                numberSummerWins,           // Integer
-                percentageTotalSummerWins,  // Float
-                yearFirstSummerWin,         // Integer
-                numberWinterWins,           // Integer
-                percentageTotalWinterWins,  // Float
-                yearFirstWinterWin,         // Integer
-                numberEventsWonByFemaleAthletes,    // Integer
-                numberEventsWonByMaleAthletes);     // Integer
+                countryName,
+                country.getGdp(),
+                country.getPopulation(),
+                goldMedalCount,
+                numberSummerWins,
+                percentageTotalSummerWins,
+                yearFirstSummerWin,
+                numberWinterWins,
+                percentageTotalWinterWins,
+                yearFirstWinterWin,
+                numberEventsWonByFemaleAthletes,
+                numberEventsWonByMaleAthletes);
     }
 
     private List<CountrySummary> getCountrySummaries(String sortBy, boolean ascendingOrder) {
@@ -128,7 +127,7 @@ public class GoldMedalController {
     private List<CountrySummary> getCountrySummariesWithMedalCount(List<Country> countries) {
         List<CountrySummary> countrySummaries = new ArrayList<>();
         for (var country : countries) {
-            var goldMedalCount = (int) goldMedalRepository.countByCountry(country.getName()); // TODO: get count of medals for the given country
+            var goldMedalCount = (int) goldMedalRepository.countByCountry(country.getName());
             countrySummaries.add(new CountrySummary(country, goldMedalCount));
         }
         return countrySummaries;
