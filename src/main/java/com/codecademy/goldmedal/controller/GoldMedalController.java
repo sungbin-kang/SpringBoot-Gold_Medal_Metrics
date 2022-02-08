@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/countries")
+@RequestMapping(value = "/countries")
 public class GoldMedalController {
     // TODO: declare references to your repositories
     private final GoldMedalRepository goldMedalRepository;
@@ -45,34 +45,14 @@ public class GoldMedalController {
     private CountryMedalsListResponse getCountryMedalsListResponse(String countryName, String sortBy, boolean ascendingOrder) {
         List<GoldMedal> medalsList;
 
-        if (sortBy != "year" || sortBy != "season" || sortBy != "city" || sortBy != "name" || sortBy != "event") {
-            medalsList = new ArrayList<>();
-        } else {
+        if (sortBy.equals("year") || sortBy.equals("season") || sortBy.equals("city") || sortBy.equals("name") || sortBy.equals("event")) {
             Sort sort = ascendingOrder ? Sort.by(sortBy).ascending() : Sort.by(sortBy).descending();
 
             medalsList = goldMedalRepository.findByCountry(countryName, sort);
+        } else {
+            
+            medalsList = new ArrayList<>();
         }
-
-        // switch (sortBy) {
-        //     case "year":
-        //         medalsList = // TODO: list of medals sorted by year in the given order
-        //         break;
-        //     case "season":
-        //         medalsList = // TODO: list of medals sorted by season in the given order
-        //         break;
-        //     case "city":
-        //         medalsList = // TODO: list of medals sorted by city in the given order
-        //         break;
-        //     case "name":
-        //         medalsList = // TODO: list of medals sorted by athlete's name in the given order
-        //         break;
-        //     case "event":
-        //         medalsList = // TODO: list of medals sorted by event in the given order
-        //         break;
-        //     default:
-        //         medalsList = new ArrayList<>();
-        //         break;
-        // }
 
         return new CountryMedalsListResponse(medalsList);
     }
