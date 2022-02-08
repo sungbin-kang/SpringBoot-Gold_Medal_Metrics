@@ -22,7 +22,6 @@ This is an Olympic metrics reporting web application called Gold Medal Metrics. 
 ### Models and Attributes
 
 - `Country`
-    - id
     - name
     - code
     - gdp
@@ -39,74 +38,70 @@ This is an Olympic metrics reporting web application called Gold Medal Metrics. 
     - discipline
     - event
 
-### Controller Methods
+### RestController Methods
+
+Public methods:
 
 - `getCountries`
 - `getCountryDetails`
 - `getCountryMedalsList`
+
+Private methods:
+
+- `getCountryMedalsListResponse`
+- `getCountryDetailsResponse`
+- `getCountrySummaries`
+- `sortByMedalCount`
+- `getCountrySummariesWithMedalCount`
 
 
 ## How to Use Application
 
 ### To start application
 
-For Mac,
-`./mvnw spring-boot:run`
+For Mac, `./mvnw spring-boot:run`
 
-For Window,
-`mvnw spring-boot:run`
+For Window, `mvnw spring-boot:run`
 
 
 ### With web application
 
 
-**Home Page**
-
-`localhost:8080/`
-
-<img src= "" width="500" />
-
+### With curl to Render JSON
 
 **List of Countries**
 
-`localhost:8080/countries`
+`curl "localhost:3001/countries?sort_by={sort_by_value}&ascending={ascending_value}"`
 
-<img src= "" width="500" />
-
-Additionally, user can specify ascending order by with values "y" or "n", and sorting values with "year", "city", "season", "name", "country", "gender", "sport", "discipline" or "event". 
+User must specify sort_by value with "year", "city", "season", "name", "country", "gender", "sport", "discipline" or "event", and ascending value with "y" or "n". 
 
 For example: 
 
-`localhost:8080/countries?ascending=n&sortby=population`
+`curl "localhost:3001/countries?sort_by=name&ascending=y"`
 <img src= "" width="500" />
 
 
 **Specific Country Details**
 
 User can type specific country to see the details.
-`localhost:8080/{countryName}`
+`curl "localhost:3001/countries/{countryName}"`
 
 For example:
 
-`localhost:8080/Australia`
+`curl "localhost:3001/countries/Australia"`
 
 <img src= "" width="500" />
 
 
-**Specific Country Gold Medal Lists**
+**Specific Country Gold Medal List**
 
-`localhost:8080/{countryName}/medals`
+User must specify sort_by value with "year", "city", "season", "name", "country", "gender", "sport", "discipline" or "event", and ascending value with "y" or "n". 
 
-For example:
+`curl "localhost:3001/countries/{countryName}/medals?sort_by={sort_by_value}&ascending={ascending_value}"`
 
-`localhost:8080/Australia/medals`
-
-<img src= "" width="500" />
-
-Additionally, user can specify ascending order by with values "y" or "n", and sorting values with "year", "city", "season", "name", "country", "gender", "sport", "discipline" or "event". 
 
 For example: 
 
-`localhost:8080/Australia/medals?ascending=n&sortby=event`
+`curl "localhost:3001/countries/Australia/medals?sort_by=year&ascending=n"`
 
 <img src= "" width="500" />
